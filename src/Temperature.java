@@ -1,3 +1,5 @@
+import java.security.KeyStore;
+
 public class Temperature
 {
     private char c;
@@ -84,6 +86,42 @@ public class Temperature
 
     }
 
+    double check(Temperature o1, Temperature o2)
+    {
+        Temperature obj1= new Temperature();
+        switch(o1.c)
+        {
+            case 'C':   obj1= o2.toCelcius();
+                break;
+            case 'F':   obj1= o2.toFarenheit();
+                break;
+            case 'K':   obj1= o2.toKelvin();
+                break;
+        }
+
+        return obj1.temp;
+    }
+
+    boolean equals(Temperature obj)
+    {
+        double val= check(this, obj);
+
+        if (this.temp== val)
+            return true;
+        else
+            return false;
+    }
+
+    boolean greaterThan(Temperature obj)
+    {
+        double val= check (this, obj);
+
+        if (this.temp > val)
+            return true;
+        else
+            return false;
+    }
+
     public String toString()
     {
         return this.temp+" "+this.c;
@@ -109,6 +147,32 @@ public class Temperature
         System.out.println("\nTemp1 is " + temp1 + " and the Kalvin value is 373.15 " );
         temp1 = temp1.toKelvin();
         System.out.println("Temp1 to Kalvin is " + temp1);
+        System.out.println("\nThe temperature 122F and 50C are the same.");
+        Temperature tempAve = new Temperature(50.0, 'C');
+        System.out.println("temp2 is " + temp2);
+        System.out.println("tempAve is " + tempAve);
+        System.out.println("Are temp2 and tempAve the same?");
+        if (temp2.equals(tempAve))
+        {
+            System.out.println("Yes, these two temperatures are equal.");
+        }
+        else
+        {
+            System.out.println("No, these two temperatures are not equal.");
+        }
+
+
+        System.out.println("The first temperature is temp4 and is " + temp4);
+        System.out.println("The second temperature is temp2 and is " + temp2);
+        System.out.println("Is temp4 greater than temp2?");
+        if (temp4.greaterThan(temp2))
+        {
+            System.out.println("Yes, temp4 is greater then temp2.");
+        }
+        else
+        {
+            System.out.println("No, temp4 is not greater then temp2.");
+        }
 
     }
 
